@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: password
+  cloud:
+    stream:
+      defaultBinder: kafka
+      default:
+        contentType: text/plain
+      kafka:
+        binder:
+          brokers: localhost:9092
+          auto-create-topics: true
+      bindings:
+        processTransactions:
+          destination: TRANSACTION
+          consumer:
+            maxAttempts: 4
